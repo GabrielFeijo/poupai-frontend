@@ -1,4 +1,4 @@
-import { Search } from 'lucide-react';
+import { Menu } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 import { ThemeToggle } from './ThemeToggle';
 import { useAuth } from '@/hooks/auth/useAuth';
@@ -17,38 +17,37 @@ const getPageTitle = (pathname: string): string => {
     return routes[pathname] ?? "Dashboard";
 };
 
-export const Header = () => {
+export const Header = ({ onMenuClick }: { onMenuClick?: () => void }) => {
     const { user } = useAuth();
     const location = useLocation();
     const pageTitle = getPageTitle(location.pathname);
 
     return (
         <header className="flex h-16 items-center justify-between border-b border-gray-200 dark:border-gray-700 bg-white/80 dark:bg-gray-900/80 backdrop-blur-md px-4 sm:px-6 lg:px-8">
-            <div className="flex items-center gap-4">
-                <div className="flex items-center gap-3">
-                    <div className="hidden sm:block">
-                        <h1 className="text-xl font-semibold bg-gradient-to-r from-blue-600 to-purple-600 bg-clip-text text-transparent">
-                            {pageTitle}
-                        </h1>
-                        <p className="text-sm text-muted-foreground">
-                            Bem-vindo de volta, {user?.name?.split(' ')[0]}!
-                        </p>
-                    </div>
-                    <div className="sm:hidden">
-                        <h1 className="text-lg font-semibold">{pageTitle}</h1>
-                    </div>
-                </div>
-            </div>
-
-            <div className="flex items-center gap-2">
+            <div className="flex items-center gap-3">
                 <Button
                     variant="ghost"
                     size="icon"
                     className="md:hidden"
+                    onClick={onMenuClick}
                 >
-                    <Search className="h-4 w-4" />
+                    <Menu className="h-5 w-5" />
                 </Button>
 
+                <div className="hidden sm:block">
+                    <h1 className="text-xl font-semibold bg-gradient-to-r from-blue-600 to-purple-600 bg-clip-text text-transparent">
+                        {pageTitle}
+                    </h1>
+                    <p className="text-sm text-muted-foreground">
+                        Bem-vindo de volta, {user?.name?.split(' ')[0]}!
+                    </p>
+                </div>
+                <div className="sm:hidden">
+                    <h1 className="text-lg font-semibold">{pageTitle}</h1>
+                </div>
+            </div>
+
+            <div className="flex items-center gap-2">
                 <ThemeToggle />
 
                 <Button
