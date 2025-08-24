@@ -8,7 +8,7 @@ export const DashboardPage = () => {
         <div className="space-y-6">
             <DashboardStats />
 
-            <div className="grid gap-6 md:grid-cols-2">
+            <div className="md:grid md:gap-6 md:grid-cols-2 space-y-6 md:space-y-0">
                 <ExpenseChart />
                 <CategoryChart />
             </div>
