@@ -50,8 +50,9 @@ export const RecentExpenses = () => {
                         <Clock className="h-5 w-5 text-blue-500" />
                         Transações Recentes
                     </div>
-                    <Badge variant="secondary" className="text-xs">
-                        {expensesData.expenses.length} transações
+                    <Badge variant="secondary" className="text-xs text-nowrap">
+                        {expensesData.expenses.length}
+                        <span className='hidden sm:inline'>{expensesData.expenses.length === 1 ? ' transação' : ' transações'}</span>
                     </Badge>
                 </CardTitle>
             </CardHeader>
@@ -94,8 +95,8 @@ export const RecentExpenses = () => {
                                         </Badge>
                                     </div>
                                     <div className="flex items-center gap-2 text-xs text-muted-foreground">
-                                        <span>{expense.category.name}</span>
-                                        <span>•</span>
+                                        <span className='hidden sm:inline'>{expense.category.name}</span>
+                                        <span className="hidden sm:inline">•</span>
                                         <span>{formatRelativeTime(expense.date)}</span>
                                     </div>
                                 </div>

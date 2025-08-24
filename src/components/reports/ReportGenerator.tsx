@@ -62,7 +62,6 @@ export const ReportGenerator = () => {
 
     return (
         <div className="space-y-6">
-            {/* Report Selection */}
             <Card>
                 <CardHeader>
                     <CardTitle className="flex items-center gap-2">
@@ -210,7 +209,6 @@ export const ReportGenerator = () => {
                             </Card>
                         </div>
 
-                        {/* Categories Breakdown */}
                         <div>
                             <h3 className="text-lg font-semibold mb-4">Despesas por Categoria</h3>
                             <div className="space-y-2">

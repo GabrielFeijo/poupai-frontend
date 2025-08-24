@@ -47,7 +47,6 @@ export const CategoriesList = () => {
 
     return (
         <div className="space-y-6">
-            {/* Estatísticas Gerais */}
             <div className="grid gap-4 md:grid-cols-3">
                 <Card className="bg-gradient-to-r from-blue-50 to-blue-100 dark:from-blue-900/20 dark:to-blue-800/20">
                     <CardContent className="p-6">
@@ -111,9 +110,9 @@ export const CategoriesList = () => {
                         Suas Categorias
                     </CardTitle>
 
-                    <Button onClick={handleNewCategory} className="w-full sm:w-auto text-sm">
-                        <Plus className="h-3 w-3 mr-2" />
-                        Nova Categoria
+                    <Button onClick={handleNewCategory} className="w-fit sm:w-auto text-sm">
+                        <Plus className="h-3 w-3 sm:mr-2" />
+                        <span className='hidden sm:inline'>Nova Categoria</span>
                     </Button>
                 </CardHeader>
                 <CardContent>

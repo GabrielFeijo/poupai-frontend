@@ -54,7 +54,6 @@ export const ExpenseChart = () => {
         );
     }
 
-    // Agrupar despesas por data
     const expensesByDate = expensesData.expenses.reduce((acc, expense) => {
         const date = formatDate(expense.date, "yyyy-MM-dd");
         if (!acc[date]) acc[date] = 0;
@@ -79,7 +78,7 @@ export const ExpenseChart = () => {
                 borderColor: "#ef4444",
                 backgroundColor: "rgba(239, 68, 68, 0.3)",
                 fill: true,
-                tension: 0.4, // curva suave
+                tension: 0.4,
                 pointBackgroundColor: "#ef4444",
                 pointBorderWidth: 2,
                 pointRadius: 4,
@@ -93,7 +92,7 @@ export const ExpenseChart = () => {
         maintainAspectRatio: false,
         plugins: {
             legend: {
-                display: false, // esconder legenda
+                display: false,
             },
             tooltip: {
                 callbacks: {
