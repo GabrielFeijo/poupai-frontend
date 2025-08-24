@@ -7,6 +7,7 @@ import {
     Title,
     Tooltip,
     Legend,
+    ChartOptions,
 } from "chart.js";
 import { Line } from "react-chartjs-2";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
@@ -14,6 +15,7 @@ import { formatCurrency, formatDate } from "@/lib/formatters";
 import { useExpenses } from "@/hooks/expenses/useExpenses";
 import { LoadingSpinner } from "@/components/common/LoadingSpinner";
 import { ExpenseType } from "@/types/expense.types";
+import { useThemeStore } from "@/store/themeStore";
 
 ChartJS.register(
     CategoryScale,
@@ -30,6 +32,13 @@ export const ExpenseChart = () => {
         limit: 30,
         type: ExpenseType.EXPENSE,
     });
+    const { theme } = useThemeStore();
+
+    const textColor = theme === "dark" ? "#d1d5db" : "#111827";
+    const gridColor = theme === "dark" ? "rgba(255,255,255,0.1)" : "rgba(0,0,0,0.1)";
+    const tooltipBg = theme === "dark" ? "#374151" : "#fff";
+    const tooltipTitleColor = theme === "dark" ? "#f9fafb" : "#111827";
+    const tooltipBodyColor = theme === "dark" ? "#f9fafb" : "#111827";
 
     if (isLoading) {
         return (
@@ -87,7 +96,7 @@ export const ExpenseChart = () => {
         ],
     };
 
-    const options = {
+    const options: ChartOptions<"line"> = {
         responsive: true,
         maintainAspectRatio: false,
         plugins: {
@@ -95,6 +104,9 @@ export const ExpenseChart = () => {
                 display: false,
             },
             tooltip: {
+                backgroundColor: tooltipBg,
+                titleColor: tooltipTitleColor,
+                bodyColor: tooltipBodyColor,
                 callbacks: {
                     label: (context: any) => formatCurrency(context.raw),
                 },
@@ -102,10 +114,13 @@ export const ExpenseChart = () => {
         },
         scales: {
             x: {
-                grid: { display: false },
+                grid: { color: gridColor, display: true },
+                ticks: { color: textColor },
             },
             y: {
+                grid: { color: gridColor },
                 ticks: {
+                    color: textColor,
                     callback: (value: number | string) =>
                         typeof value === "number" ? formatCurrency(value) : value,
                 },
