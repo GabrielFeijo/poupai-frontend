@@ -84,7 +84,7 @@ export const CategoryForm = ({ open, onOpenChange, category }: CategoryFormProps
             onOpenChange(false);
             reset();
         } catch (error) {
-            // Error is handled by the mutation
+            console.error(error);
         }
     };
 
@@ -145,8 +145,8 @@ export const CategoryForm = ({ open, onOpenChange, category }: CategoryFormProps
                                     key={color}
                                     type="button"
                                     className={`w-6 h-6 rounded-full border-2 transition-all hover:scale-110 ${selectedColor === color
-                                            ? 'border-gray-900 dark:border-gray-100 shadow-lg'
-                                            : 'border-gray-300 dark:border-gray-600'
+                                        ? 'border-gray-900 dark:border-gray-100 shadow-lg'
+                                        : 'border-gray-300 dark:border-gray-600'
                                         }`}
                                     style={{ backgroundColor: color }}
                                     onClick={() => setSelectedColor(color)}

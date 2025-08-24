@@ -92,7 +92,7 @@ export const ExpenseForm = ({
 			onOpenChange(false);
 			reset();
 		} catch (error) {
-			// Error is handled by the mutation
+			console.error(error);
 		}
 	};
 

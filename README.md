@@ -120,7 +120,6 @@ npm run preview      # Visualiza build de produção
 
 # Qualidade de Código
 npm run lint         # Executa ESLint
-npm run type-check   # Verifica tipos TypeScript
 ```
 
 ## 🛠️ Feito com
