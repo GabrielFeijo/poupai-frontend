@@ -1,4 +1,5 @@
 import axios from 'axios';
+import Cookies from 'js-cookie';
 import { toast } from 'sonner';
 
 const API_BASE_URL = import.meta.env.VITE_API_URL || 'http://localhost:3333';
@@ -10,7 +11,7 @@ export const api = axios.create({
 
 api.interceptors.request.use(
 	(config) => {
-		const token = localStorage.getItem('auth-token');
+		const token = Cookies.get('auth-token');
 		if (token) {
 			config.headers.Authorization = `Bearer ${token}`;
 		}
@@ -25,7 +26,8 @@ api.interceptors.response.use(
 	(response) => response,
 	(error) => {
 		if (error.response?.status === 401) {
-			localStorage.removeItem('auth-token');
+			Cookies.remove('auth-token');
+			Cookies.remove('auth-storage');
 			window.location.href = '/login';
 		}
 
